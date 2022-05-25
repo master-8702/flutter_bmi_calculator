@@ -1,9 +1,13 @@
 import 'dart:ui';
 
+import 'package:flutter_bmi_calculator/components/bottom_button.dart';
+import 'package:flutter_bmi_calculator/results_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'my_constants.dart';
 import 'package:flutter/material.dart';
+import 'reusable_card.dart';
+import 'components/rounded_icon_button.dart';
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -233,46 +237,15 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              height: kBottomContainerHeight,
-              width: double.infinity,
-              // margin: EdgeInsets.only(top: 6),
-              decoration: const BoxDecoration(
-                  color: kBottomContainerColor,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15),
-                      bottomRight: Radius.circular(15))),
-            ),
+            BottomButton("CALCULATE", () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return ResultsPage();
+                }),
+              );
+            })
           ],
         ));
-  }
-
-  Container reusableCard(Color newColor, Widget childWidget) {
-    return Container(
-      margin: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: newColor,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: childWidget,
-    );
-  }
-}
-
-class RoundedIconButton extends StatelessWidget {
-  RoundedIconButton(this.icon, this.onPressed);
-
-  final IconData icon;
-  final VoidCallback onPressed;
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onPressed,
-      elevation: 7.0,
-      constraints: const BoxConstraints.tightFor(width: 50.0, height: 50.0),
-      shape: const CircleBorder(),
-      fillColor: const Color(0xFF4C4F5E),
-    );
   }
 }

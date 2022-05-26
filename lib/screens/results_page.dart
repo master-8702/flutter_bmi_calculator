@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bmi_calculator/input_page.dart';
+import 'package:flutter_bmi_calculator/screens/input_page.dart';
 import 'package:flutter_bmi_calculator/my_constants.dart';
-import 'reusable_card.dart';
-import 'components/bottom_button.dart';
+import 'package:flutter_bmi_calculator/components/reusable_card.dart';
+import 'package:flutter_bmi_calculator/components/bottom_button.dart';
 
 class ResultsPage extends StatelessWidget {
-  const ResultsPage({Key? key}) : super(key: key);
+  ResultsPage(this.bmiResult, this.bmiStatus, this.bmiInterpretation);
+
+  String bmiResult;
+  String bmiStatus;
+  String bmiInterpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,7 @@ class ResultsPage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "20.3",
+                        bmiResult,
                         style: kNumberTextStyle,
                       ),
                     ],
@@ -53,7 +57,7 @@ class ResultsPage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Normal",
+                        bmiStatus,
                         style: TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
@@ -68,13 +72,13 @@ class ResultsPage extends StatelessWidget {
                         style: TextStyle(fontSize: 15),
                       ),
                       Text(
-                        "18.8 - 25 kg/m2",
+                        "18.5 - 25 kg/m2",
                         style: TextStyle(fontSize: 15),
                       ),
                     ],
                   ),
                   Text(
-                    "You Have a Normal Body Weight.\n  Good Job!",
+                    bmiInterpretation,
                     style: TextStyle(fontSize: 17),
                     textAlign: TextAlign.center,
                   ),
@@ -82,14 +86,8 @@ class ResultsPage extends StatelessWidget {
               ),
             ),
           ),
-          BottomButton("Re-CALCULATE",(){
-            Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
-                      return InputPage();
-                    }),
-                  );
-
+          BottomButton("Re-CALCULATE", () {
+            Navigator.pop(context);
           }),
         ],
       ),

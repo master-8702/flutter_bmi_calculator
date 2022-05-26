@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import '../my_constants.dart';
-import '../input_page.dart';
+import '../screens/input_page.dart';
 
 class BottomButton extends StatelessWidget {
   final String buttonText;

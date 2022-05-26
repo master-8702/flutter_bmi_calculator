@@ -1,13 +1,12 @@
-import 'dart:ui';
-
+import 'package:flutter_bmi_calculator/bmi_calculator.dart';
 import 'package:flutter_bmi_calculator/components/bottom_button.dart';
-import 'package:flutter_bmi_calculator/results_page.dart';
+import 'package:flutter_bmi_calculator/screens/results_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'my_constants.dart';
+import '../my_constants.dart';
 import 'package:flutter/material.dart';
-import 'reusable_card.dart';
-import 'components/rounded_icon_button.dart';
+import '../components/reusable_card.dart';
+import '../components/rounded_icon_button.dart';
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -238,10 +237,12 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             BottomButton("CALCULATE", () {
+              BMICalculator calc = BMICalculator(height, weight);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) {
-                  return ResultsPage();
+                  return ResultsPage(calc.calculateBMI(), calc.getStatus(),
+                      calc.getInterpretation());
                 }),
               );
             })

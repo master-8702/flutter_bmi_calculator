@@ -61,7 +61,9 @@ class ResultsPage extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
-                            color: Colors.green[300]),
+                            color: bmiStatus == "Normal"
+                                ? Colors.green[300]
+                                : Colors.red),
                       ),
                     ],
                   ),
